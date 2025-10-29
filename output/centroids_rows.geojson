@@ -1,0 +1,2469 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770139.8538916257,
+          6270699.691576355
+        ]
+      },
+      "properties": {
+        "label": 0,
+        "row_id": -2280986,
+        "accepted": true,
+        "residual_m": -0.053180692717432976
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770170.7133333334,
+          6270683.818888889
+        ]
+      },
+      "properties": {
+        "label": 1,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.11647657491266727
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770165.7198734178,
+          6270689.754683545
+        ]
+      },
+      "properties": {
+        "label": 2,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.04922269284725189
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770164.9485185186,
+          6270687.335555555
+        ]
+      },
+      "properties": {
+        "label": 3,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.1040677884593606
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770166.4755769232,
+          6270692.280576922
+        ]
+      },
+      "properties": {
+        "label": 4,
+        "row_id": -2280989,
+        "accepted": true,
+        "residual_m": -0.07724499236792326
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770140.8344615385,
+          6270710.92673077
+        ]
+      },
+      "properties": {
+        "label": 5,
+        "row_id": -2280990,
+        "accepted": true,
+        "residual_m": -0.06346249673515558
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770158.8794186049,
+          6270691.052093023
+        ]
+      },
+      "properties": {
+        "label": 6,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.10315556731075048
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770174.2654545455,
+          6270693.3559090905
+        ]
+      },
+      "properties": {
+        "label": 7,
+        "row_id": -2280991,
+        "accepted": true,
+        "residual_m": -0.02192386519163847
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770153.658,
+          6270694.219999999
+        ]
+      },
+      "properties": {
+        "label": 8,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.07718474976718426
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770154.9374922601,
+          6270708.165139319
+        ]
+      },
+      "properties": {
+        "label": 9,
+        "row_id": -2280992,
+        "accepted": true,
+        "residual_m": -0.033874901942908764
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770157.2800000001,
+          6270694.83
+        ]
+      },
+      "properties": {
+        "label": 10,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": 0.031361174769699574
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770147.0611881189,
+          6270701.178514852
+        ]
+      },
+      "properties": {
+        "label": 11,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.044545337557792664
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770174.4473553721,
+          6270699.051900827
+        ]
+      },
+      "properties": {
+        "label": 12,
+        "row_id": -2280993,
+        "accepted": true,
+        "residual_m": 0.06714997719973326
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770142.893255814,
+          6270700.852325581
+        ]
+      },
+      "properties": {
+        "label": 13,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.1099442271515727
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770140.4501816349,
+          6270714.048466195
+        ]
+      },
+      "properties": {
+        "label": 14,
+        "row_id": -2280991,
+        "accepted": true,
+        "residual_m": -0.004121033474802971
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770155.2463636365,
+          6270699.18909091
+        ]
+      },
+      "properties": {
+        "label": 15,
+        "row_id": -2280989,
+        "accepted": true,
+        "residual_m": -0.10290917474776506
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770176.713898305,
+          6270700.53762712
+        ]
+      },
+      "properties": {
+        "label": 16,
+        "row_id": -2280994,
+        "accepted": true,
+        "residual_m": 0.13694284576922655
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770182.1737500001,
+          6270700.186249998
+        ]
+      },
+      "properties": {
+        "label": 17,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": 0.10530491638928652
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770134.8592035398,
+          6270711.690029499
+        ]
+      },
+      "properties": {
+        "label": 18,
+        "row_id": -2280989,
+        "accepted": true,
+        "residual_m": -0.11386736016720533
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770183.02,
+          6270702.672
+        ]
+      },
+      "properties": {
+        "label": 19,
+        "row_id": -2280996,
+        "accepted": true,
+        "residual_m": 0.06421819422394037
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770178.9099999999,
+          6270702.24
+        ]
+      },
+      "properties": {
+        "label": 20,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": 0.0587875721976161
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770167.7206976744,
+          6270703.19860465
+        ]
+      },
+      "properties": {
+        "label": 21,
+        "row_id": -2280993,
+        "accepted": true,
+        "residual_m": 0.04471299517899752
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770177.43,
+          6270703.38
+        ]
+      },
+      "properties": {
+        "label": 22,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": -0.1402674810960889
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770139.4090734826,
+          6270720.602523962
+        ]
+      },
+      "properties": {
+        "label": 23,
+        "row_id": -2280993,
+        "accepted": true,
+        "residual_m": -0.00792376883327961
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770168.8415384616,
+          6270705.356923075
+        ]
+      },
+      "properties": {
+        "label": 24,
+        "row_id": -2280994,
+        "accepted": true,
+        "residual_m": 0.13940914627164602
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770176.5014285715,
+          6270703.851428573
+        ]
+      },
+      "properties": {
+        "label": 25,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": -0.05724093969911337
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770179.8400000001,
+          6270704.639999999
+        ]
+      },
+      "properties": {
+        "label": 26,
+        "row_id": -2280996,
+        "accepted": true,
+        "residual_m": 0.04707696009427309
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770184.7705405407,
+          6270704.571891891
+        ]
+      },
+      "properties": {
+        "label": 27,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": 0.05036609899252653
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770168.8899999999,
+          6270708.43322034
+        ]
+      },
+      "properties": {
+        "label": 28,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": 0.011458778753876686
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770120.3897667639,
+          6270714.624606416
+        ]
+      },
+      "properties": {
+        "label": 29,
+        "row_id": -2280987,
+        "accepted": true,
+        "residual_m": -0.09957708325237036
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770177.6535294119,
+          6270706.027058822
+        ]
+      },
+      "properties": {
+        "label": 30,
+        "row_id": -2280996,
+        "accepted": true,
+        "residual_m": 0.006364375352859497
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770151.8343280184,
+          6270727.673849657
+        ]
+      },
+      "properties": {
+        "label": 31,
+        "row_id": -2280998,
+        "accepted": true,
+        "residual_m": 0.0750498790293932
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770174.2615789474,
+          6270708.090526315
+        ]
+      },
+      "properties": {
+        "label": 32,
+        "row_id": -2280996,
+        "accepted": true,
+        "residual_m": 0.01852493453770876
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770180.4376923078,
+          6270707.303076923
+        ]
+      },
+      "properties": {
+        "label": 33,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": -0.015391046181321144
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770136.2247368423,
+          6270707.840526315
+        ]
+      },
+      "properties": {
+        "label": 34,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.06516349874436855
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770140.7718207681,
+          6270722.602048364
+        ]
+      },
+      "properties": {
+        "label": 35,
+        "row_id": -2280994,
+        "accepted": true,
+        "residual_m": 0.0958241755142808
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770176.4663636365,
+          6270709.7579220785
+        ]
+      },
+      "properties": {
+        "label": 36,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": -0.03433955181390047
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770156.4549055019,
+          6270727.871768164
+        ]
+      },
+      "properties": {
+        "label": 37,
+        "row_id": -2280999,
+        "accepted": true,
+        "residual_m": 0.013394795358181
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770131.7980000002,
+          6270710.500000001
+        ]
+      },
+      "properties": {
+        "label": 38,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.020727873779833317
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770144.5669760479,
+          6270726.285538922
+        ]
+      },
+      "properties": {
+        "label": 39,
+        "row_id": -2280996,
+        "accepted": true,
+        "residual_m": 0.013680455274879932
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770181.9260580913,
+          6270715.136639004
+        ]
+      },
+      "properties": {
+        "label": 40,
+        "row_id": -2281000,
+        "accepted": true,
+        "residual_m": 0.0891124727204442
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770172.7610344826,
+          6270711.955862068
+        ]
+      },
+      "properties": {
+        "label": 41,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": 0.026841931976377964
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770140.2972669493,
+          6270725.935137712
+        ]
+      },
+      "properties": {
+        "label": 42,
+        "row_id": -2280995,
+        "accepted": true,
+        "residual_m": 0.02209017053246498
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770187.4313888891,
+          6270714.638333334
+        ]
+      },
+      "properties": {
+        "label": 43,
+        "row_id": -2281001,
+        "accepted": true,
+        "residual_m": 0.15901030413806438
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770120.6600000001,
+          6270717.392
+        ]
+      },
+      "properties": {
+        "label": 44,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.07995441649109125
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770146.2468865436,
+          6270728.177414249
+        ]
+      },
+      "properties": {
+        "label": 45,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": 0.04355734959244728
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770172.0733494143,
+          6270726.895782218
+        ]
+      },
+      "properties": {
+        "label": 46,
+        "row_id": -2281002,
+        "accepted": true,
+        "residual_m": 0.2494031535461545
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770192.5027272727,
+          6270717.18
+        ]
+      },
+      "properties": {
+        "label": 47,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.3839388685300946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770165.078150834,
+          6270728.307411168
+        ]
+      },
+      "properties": {
+        "label": 48,
+        "row_id": -2281001,
+        "accepted": true,
+        "residual_m": 0.17890016920864582
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770190.0550000002,
+          6270718.755
+        ]
+      },
+      "properties": {
+        "label": 49,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.31942704040557146
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770193.8915384616,
+          6270719.429999999
+        ]
+      },
+      "properties": {
+        "label": 50,
+        "row_id": -2281004,
+        "accepted": true,
+        "residual_m": 0.2604828393086791
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770106.477368421,
+          6270720.290526316
+        ]
+      },
+      "properties": {
+        "label": 51,
+        "row_id": -2280986,
+        "accepted": true,
+        "residual_m": -0.1847325973212719
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770148.8061216351,
+          6270735.493609172
+        ]
+      },
+      "properties": {
+        "label": 52,
+        "row_id": -2281000,
+        "accepted": true,
+        "residual_m": 0.029879819601774216
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770187.9175,
+          6270720.067499999
+        ]
+      },
+      "properties": {
+        "label": 53,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.3167141508311033
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770189.0324390244,
+          6270722.470243902
+        ]
+      },
+      "properties": {
+        "label": 54,
+        "row_id": -2281004,
+        "accepted": true,
+        "residual_m": 0.20606246683746576
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770195.4602325582,
+          6270721.324186047
+        ]
+      },
+      "properties": {
+        "label": 55,
+        "row_id": -2281005,
+        "accepted": true,
+        "residual_m": 0.34648218750953674
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770186.0299999999,
+          6270721.18
+        ]
+      },
+      "properties": {
+        "label": 56,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.3539633322507143
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770113.6062237762,
+          6270724.7156643355
+        ]
+      },
+      "properties": {
+        "label": 57,
+        "row_id": -2280989,
+        "accepted": true,
+        "residual_m": -0.12000012397766113
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770122.4093628809,
+          6270728.056454294
+        ]
+      },
+      "properties": {
+        "label": 58,
+        "row_id": -2280992,
+        "accepted": true,
+        "residual_m": -0.005151424556970596
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770110.0162944164,
+          6270724.031269033
+        ]
+      },
+      "properties": {
+        "label": 59,
+        "row_id": -2280988,
+        "accepted": true,
+        "residual_m": -0.18185826018452644
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770192.0425000001,
+          6270723.405
+        ]
+      },
+      "properties": {
+        "label": 60,
+        "row_id": -2281005,
+        "accepted": true,
+        "residual_m": 0.3573178304359317
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770177.9740404042,
+          6270735.123434344
+        ]
+      },
+      "properties": {
+        "label": 61,
+        "row_id": -2281006,
+        "accepted": true,
+        "residual_m": 0.23374763876199722
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770175.222079208,
+          6270727.90079208
+        ]
+      },
+      "properties": {
+        "label": 62,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.2683181408792734
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770188.5348780488,
+          6270725.521463415
+        ]
+      },
+      "properties": {
+        "label": 63,
+        "row_id": -2281005,
+        "accepted": true,
+        "residual_m": 0.38470678962767124
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770182.1310204082,
+          6270726.749387756
+        ]
+      },
+      "properties": {
+        "label": 64,
+        "row_id": -2281004,
+        "accepted": true,
+        "residual_m": 0.1619738144800067
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770179.7631010453,
+          6270736.945679443
+        ]
+      },
+      "properties": {
+        "label": 65,
+        "row_id": -2281007,
+        "accepted": true,
+        "residual_m": 0.26598718017339706
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770155.8124988301,
+          6270745.671717362
+        ]
+      },
+      "properties": {
+        "label": 66,
+        "row_id": -2281005,
+        "accepted": true,
+        "residual_m": 0.29408817552030087
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770197.8403896104,
+          6270728.852727273
+        ]
+      },
+      "properties": {
+        "label": 67,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.24526898935437202
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770153.3877380954,
+          6270744.290119047
+        ]
+      },
+      "properties": {
+        "label": 68,
+        "row_id": -2281004,
+        "accepted": true,
+        "residual_m": 0.2181452140212059
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770200.7936363637,
+          6270729.936818182
+        ]
+      },
+      "properties": {
+        "label": 69,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.2988574830815196
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770195.5511267607,
+          6270730.519436619
+        ]
+      },
+      "properties": {
+        "label": 70,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.01978076621890068
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770199.655,
+          6270730.905
+        ]
+      },
+      "properties": {
+        "label": 71,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.06800985336303711
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770112.3160000001,
+          6270731.387999999
+        ]
+      },
+      "properties": {
+        "label": 72,
+        "row_id": -2280991,
+        "accepted": true,
+        "residual_m": -0.09453944489359856
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770147.95464539,
+          6270744.60251773
+        ]
+      },
+      "properties": {
+        "label": 73,
+        "row_id": -2281003,
+        "accepted": true,
+        "residual_m": 0.2690441682934761
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770181.1671007372,
+          6270739.101130221
+        ]
+      },
+      "properties": {
+        "label": 74,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.21522316057235003
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770201.5934615385,
+          6270732.376153845
+        ]
+      },
+      "properties": {
+        "label": 75,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.3215995617210865
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770198.455,
+          6270731.505
+        ]
+      },
+      "properties": {
+        "label": 76,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.18317710887640715
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770195.873902439,
+          6270732.992195121
+        ]
+      },
+      "properties": {
+        "label": 77,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.26320449728518724
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770170.287573853,
+          6270748.667932118
+        ]
+      },
+      "properties": {
+        "label": 78,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.26071840431541204
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770194.4482481754,
+          6270736.868321168
+        ]
+      },
+      "properties": {
+        "label": 79,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.2232019891962409
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770199.9623529414,
+          6270736.353529411
+        ]
+      },
+      "properties": {
+        "label": 80,
+        "row_id": -2281011,
+        "accepted": true,
+        "residual_m": 0.3025751067325473
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770172.5196813355,
+          6270756.064825494
+        ]
+      },
+      "properties": {
+        "label": 81,
+        "row_id": -2281012,
+        "accepted": true,
+        "residual_m": 0.34909852407872677
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770174.1586235187,
+          6270758.060264358
+        ]
+      },
+      "properties": {
+        "label": 82,
+        "row_id": -2281013,
+        "accepted": true,
+        "residual_m": 0.3120624227449298
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770195.9500000001,
+          6270738.959999999
+        ]
+      },
+      "properties": {
+        "label": 83,
+        "row_id": -2281011,
+        "accepted": true,
+        "residual_m": 0.17575869522988796
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770136.0358295965,
+          6270746.080896861
+        ]
+      },
+      "properties": {
+        "label": 84,
+        "row_id": -2281001,
+        "accepted": true,
+        "residual_m": 0.19279365986585617
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770138.6945776567,
+          6270747.328501362
+        ]
+      },
+      "properties": {
+        "label": 85,
+        "row_id": -2281002,
+        "accepted": true,
+        "residual_m": 0.260776873677969
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770188.7527272728,
+          6270740.443636363
+        ]
+      },
+      "properties": {
+        "label": 86,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.1494039697572589
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770200.1397807759,
+          6270744.939865093
+        ]
+      },
+      "properties": {
+        "label": 87,
+        "row_id": -2281014,
+        "accepted": true,
+        "residual_m": 0.44991767406463623
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770193.5915384616,
+          6270740.164615384
+        ]
+      },
+      "properties": {
+        "label": 88,
+        "row_id": -2281011,
+        "accepted": true,
+        "residual_m": 0.3804602539166808
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770183.0510909094,
+          6270743.849454547
+        ]
+      },
+      "properties": {
+        "label": 89,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.22333662305027246
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770171.7100791556,
+          6270753.710936675
+        ]
+      },
+      "properties": {
+        "label": 90,
+        "row_id": -2281011,
+        "accepted": true,
+        "residual_m": 0.2585997190326452
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770207.4077173914,
+          6270743.443043477
+        ]
+      },
+      "properties": {
+        "label": 91,
+        "row_id": -2281015,
+        "accepted": true,
+        "residual_m": 0.4506052993237972
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770120.2476470589,
+          6270744.056470587
+        ]
+      },
+      "properties": {
+        "label": 92,
+        "row_id": -2280997,
+        "accepted": true,
+        "residual_m": 0.08337370958179235
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770189.1209531503,
+          6270757.667399031
+        ]
+      },
+      "properties": {
+        "label": 93,
+        "row_id": -2281016,
+        "accepted": true,
+        "residual_m": 0.3935378659516573
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770146.3821226417,
+          6270754.52504717
+        ]
+      },
+      "properties": {
+        "label": 94,
+        "row_id": -2281006,
+        "accepted": true,
+        "residual_m": 0.19103633984923363
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770196.8270786518,
+          6270750.055280898
+        ]
+      },
+      "properties": {
+        "label": 95,
+        "row_id": -2281015,
+        "accepted": true,
+        "residual_m": 0.3388099009171128
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770123.8754545456,
+          6270747.814545455
+        ]
+      },
+      "properties": {
+        "label": 96,
+        "row_id": -2280999,
+        "accepted": true,
+        "residual_m": 0.025041835382580757
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770163.8576041667,
+          6270755.606822917
+        ]
+      },
+      "properties": {
+        "label": 97,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.22294344007968903
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770188.6844408946,
+          6270760.831629393
+        ]
+      },
+      "properties": {
+        "label": 98,
+        "row_id": -2281017,
+        "accepted": true,
+        "residual_m": 0.44392544217407703
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770165.4163636365,
+          6270748.736818182
+        ]
+      },
+      "properties": {
+        "label": 99,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.2257752101868391
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770150.2281347151,
+          6270755.035025907
+        ]
+      },
+      "properties": {
+        "label": 100,
+        "row_id": -2281007,
+        "accepted": true,
+        "residual_m": 0.26786336302757263
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770188.1800777606,
+          6270764.069580094
+        ]
+      },
+      "properties": {
+        "label": 101,
+        "row_id": -2281018,
+        "accepted": true,
+        "residual_m": 0.46689027920365334
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770161.6498529413,
+          6270751.110882352
+        ]
+      },
+      "properties": {
+        "label": 102,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.16872677765786648
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770212.2295475116,
+          6270752.157828054
+        ]
+      },
+      "properties": {
+        "label": 103,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.5830873968079686
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770187.5422994654,
+          6270752.6554010715
+        ]
+      },
+      "properties": {
+        "label": 104,
+        "row_id": -2281014,
+        "accepted": true,
+        "residual_m": 0.45077879913151264
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770157.4781481482,
+          6270753.587407407
+        ]
+      },
+      "properties": {
+        "label": 105,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.23595570027828217
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770184.9901398603,
+          6270771.909545455
+        ]
+      },
+      "properties": {
+        "label": 106,
+        "row_id": -2281020,
+        "accepted": true,
+        "residual_m": 0.48896896559745073
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770203.3601401872,
+          6270757.682102805
+        ]
+      },
+      "properties": {
+        "label": 107,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.5051912534981966
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770171.9413452189,
+          6270765.24636953
+        ]
+      },
+      "properties": {
+        "label": 108,
+        "row_id": -2281015,
+        "accepted": true,
+        "residual_m": 0.3836516346782446
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770200.4884143606,
+          6270765.37857891
+        ]
+      },
+      "properties": {
+        "label": 109,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.48341326136142015
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770144.3330176899,
+          6270761.653985432
+        ]
+      },
+      "properties": {
+        "label": 110,
+        "row_id": -2281008,
+        "accepted": true,
+        "residual_m": 0.2235300289466977
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770181.140909091,
+          6270756.5618181825
+        ]
+      },
+      "properties": {
+        "label": 111,
+        "row_id": -2281014,
+        "accepted": true,
+        "residual_m": 0.46334263402968645
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770191.0083941605,
+          6270774.119854015
+        ]
+      },
+      "properties": {
+        "label": 112,
+        "row_id": -2281022,
+        "accepted": true,
+        "residual_m": 0.5018456857651472
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770171.9982008369,
+          6270762.107824268
+        ]
+      },
+      "properties": {
+        "label": 113,
+        "row_id": -2281014,
+        "accepted": true,
+        "residual_m": 0.5096716787666082
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770212.753214286,
+          6270763.6975324685
+        ]
+      },
+      "properties": {
+        "label": 114,
+        "row_id": -2281023,
+        "accepted": true,
+        "residual_m": 0.5517639024183154
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770190.2975700506,
+          6270780.280321544
+        ]
+      },
+      "properties": {
+        "label": 115,
+        "row_id": -2281024,
+        "accepted": true,
+        "residual_m": 0.6611508671194315
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770144.6522222223,
+          6270764.314074074
+        ]
+      },
+      "properties": {
+        "label": 116,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.30907583702355623
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770136.310392157,
+          6270763.591764706
+        ]
+      },
+      "properties": {
+        "label": 117,
+        "row_id": -2281007,
+        "accepted": true,
+        "residual_m": 0.24102663900703192
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770192.5236170213,
+          6270764.356595744
+        ]
+      },
+      "properties": {
+        "label": 118,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.47396723087877035
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770190.94057047,
+          6270782.935872483
+        ]
+      },
+      "properties": {
+        "label": 119,
+        "row_id": -2281025,
+        "accepted": true,
+        "residual_m": 0.5814342573285103
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770142.4490751445,
+          6270768.647341041
+        ]
+      },
+      "properties": {
+        "label": 120,
+        "row_id": -2281010,
+        "accepted": true,
+        "residual_m": 0.28536891378462315
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770188.6134254145,
+          6270766.804309393
+        ]
+      },
+      "properties": {
+        "label": 121,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.42916562501341105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770220.7061061949,
+          6270767.672920355
+        ]
+      },
+      "properties": {
+        "label": 122,
+        "row_id": -2281026,
+        "accepted": true,
+        "residual_m": 0.5695866905152798
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770145.5757943925,
+          6270769.635140187
+        ]
+      },
+      "properties": {
+        "label": 123,
+        "row_id": -2281011,
+        "accepted": true,
+        "residual_m": 0.33045712020248175
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770153.7001803052,
+          6270773.230069349
+        ]
+      },
+      "properties": {
+        "label": 124,
+        "row_id": -2281014,
+        "accepted": true,
+        "residual_m": 0.5831326562911272
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770221.8247761194,
+          6270769.975522389
+        ]
+      },
+      "properties": {
+        "label": 125,
+        "row_id": -2281027,
+        "accepted": true,
+        "residual_m": 0.5423808470368385
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770136.9221568628,
+          6270769.062352941
+        ]
+      },
+      "properties": {
+        "label": 126,
+        "row_id": -2281009,
+        "accepted": true,
+        "residual_m": 0.29777476377785206
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770193.992012987,
+          6270775.226103895
+        ]
+      },
+      "properties": {
+        "label": 127,
+        "row_id": -2281023,
+        "accepted": true,
+        "residual_m": 0.5206738319247961
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770181.9144594596,
+          6270770.825270271
+        ]
+      },
+      "properties": {
+        "label": 128,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.49948972929269075
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770156.9437628111,
+          6270777.331537335
+        ]
+      },
+      "properties": {
+        "label": 129,
+        "row_id": -2281016,
+        "accepted": true,
+        "residual_m": 0.43267335556447506
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770213.2407142858,
+          6270772.219285716
+        ]
+      },
+      "properties": {
+        "label": 130,
+        "row_id": -2281026,
+        "accepted": true,
+        "residual_m": 0.5922148609533906
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770213.8330150754,
+          6270774.972964823
+        ]
+      },
+      "properties": {
+        "label": 131,
+        "row_id": -2281027,
+        "accepted": true,
+        "residual_m": 0.45530326198786497
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770174.037949791,
+          6270775.648619247
+        ]
+      },
+      "properties": {
+        "label": 132,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.5006674956530333
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770184.5828735634,
+          6270789.704137932
+        ]
+      },
+      "properties": {
+        "label": 133,
+        "row_id": -2281026,
+        "accepted": true,
+        "residual_m": 0.6514067472890019
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770156.5746236559,
+          6270780.437526883
+        ]
+      },
+      "properties": {
+        "label": 134,
+        "row_id": -2281017,
+        "accepted": true,
+        "residual_m": 0.49753327388316393
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770147.8927177701,
+          6270779.912404181
+        ]
+      },
+      "properties": {
+        "label": 135,
+        "row_id": -2281015,
+        "accepted": true,
+        "residual_m": 0.43897133506834507
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770189.0344286981,
+          6270790.009583703
+        ]
+      },
+      "properties": {
+        "label": 136,
+        "row_id": -2281027,
+        "accepted": true,
+        "residual_m": 0.5863465331494808
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770165.0325806453,
+          6270781.205806451
+        ]
+      },
+      "properties": {
+        "label": 137,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.4657241366803646
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770175.0989655174,
+          6270780.924827586
+        ]
+      },
+      "properties": {
+        "label": 138,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.48850823659449816
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770156.7290243903,
+          6270783.313170733
+        ]
+      },
+      "properties": {
+        "label": 139,
+        "row_id": -2281018,
+        "accepted": true,
+        "residual_m": 0.48535103909671307
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770171.3687755103,
+          6270789.028979592
+        ]
+      },
+      "properties": {
+        "label": 140,
+        "row_id": -2281023,
+        "accepted": true,
+        "residual_m": 0.5675011342391372
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770183.9847511314,
+          6270795.878416289
+        ]
+      },
+      "properties": {
+        "label": 141,
+        "row_id": -2281028,
+        "accepted": true,
+        "residual_m": 0.7400662153959274
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770170.6472413794,
+          6270783.548965517
+        ]
+      },
+      "properties": {
+        "label": 142,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.5761278439313173
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770160.4619148935,
+          6270784.060851065
+        ]
+      },
+      "properties": {
+        "label": 143,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.4185692360624671
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770167.43,
+          6270785.53
+        ]
+      },
+      "properties": {
+        "label": 144,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.5673243282362819
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770149.693559322,
+          6270787.560508474
+        ]
+      },
+      "properties": {
+        "label": 145,
+        "row_id": -2281018,
+        "accepted": true,
+        "residual_m": 0.5384025909006596
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770156.1665384615,
+          6270786.664615383
+        ]
+      },
+      "properties": {
+        "label": 146,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.4418953461572528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770164.9829411765,
+          6270787.053529412
+        ]
+      },
+      "properties": {
+        "label": 147,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.5463542006909847
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770157.4797630332,
+          6270791.625497631
+        ]
+      },
+      "properties": {
+        "label": 148,
+        "row_id": -2281021,
+        "accepted": true,
+        "residual_m": 0.5668871765956283
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770151.7773684211,
+          6270789.274736841
+        ]
+      },
+      "properties": {
+        "label": 149,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.5087927430868149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770149.73,
+          6270790.610769231
+        ]
+      },
+      "properties": {
+        "label": 150,
+        "row_id": -2281019,
+        "accepted": true,
+        "residual_m": 0.4389334972947836
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770153.4238461538,
+          6270797.127692308
+        ]
+      },
+      "properties": {
+        "label": 151,
+        "row_id": -2281022,
+        "accepted": true,
+        "residual_m": 0.5141704492270947
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770154.8585714287,
+          6270799.437142857
+        ]
+      },
+      "properties": {
+        "label": 152,
+        "row_id": -2281023,
+        "accepted": true,
+        "residual_m": 0.31603594310581684
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          770163.0014285715,
+          6270805.892857144
+        ]
+      },
+      "properties": {
+        "label": 153,
+        "row_id": -2281027,
+        "accepted": true,
+        "residual_m": 0.6402013851329684
+      }
+    }
+  ]
+}

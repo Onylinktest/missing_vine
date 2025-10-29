@@ -1,0 +1,9 @@
+{
+    "input": "data/parcel.csv",
+    "class": 4,
+    "output": "output/points_class4_2D.png",
+    "no_show": true,
+    "3d": false,
+    "detect": true,
+    "detect_plot": true
+}

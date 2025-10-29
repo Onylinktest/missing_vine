@@ -1,0 +1,25 @@
+# Python / cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.ipynb_checkpoints
+
+# Environnements
+.venv/
+venv/
+env/
+.env
+
+# VS Code
+.vscode/
+
+# Fichiers lourds fréquents (tu peux retirer ce qui ne te concerne pas)
+*.parquet
+*.tif
+*.tiff
+*.zip
+*.7z
+
+# OS
+.DS_Store
+Thumbs.db
