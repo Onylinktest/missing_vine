@@ -23,6 +23,7 @@ Variables modifiables dans main (pas d'arguments CLI).
 import matplotlib.pyplot as plt
 import json
 import csv
+from math import sqrt
 
 
 # -------------------------
@@ -434,6 +435,273 @@ def export_centroids_to_geojson(path, centroids):
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(fc, f, ensure_ascii=False, indent=2)
 
+
+def _compute_alpha_shape(points, alpha):
+    """Compute alpha shape (concave hull) for a set of 2D points.
+    Requires shapely and scipy.spatial.Delaunay. If shapely is unavailable,
+    this function will raise ImportError.
+    Returns a shapely.geometry (Polygon or MultiPolygon).
+    """
+    # lazy imports
+    try:
+        from shapely.geometry import Polygon, MultiPolygon, Point
+        from shapely.ops import unary_union, polygonize
+    except Exception as e:
+        raise ImportError("shapely is required for alpha shape computation")
+    from scipy.spatial import Delaunay
+
+    if len(points) < 4:
+        # Not enough points for a polygon -> return convex hull of points
+        return MultiPolygon([Point(p).buffer(0) for p in points]).convex_hull
+
+    pts = np.array(points)
+    tri = Delaunay(pts)
+    triangles = pts[tri.simplices]
+
+    def triangle_circumradius(tri_pts):
+        a = np.linalg.norm(tri_pts[0] - tri_pts[1])
+        b = np.linalg.norm(tri_pts[1] - tri_pts[2])
+        c = np.linalg.norm(tri_pts[2] - tri_pts[0])
+        s = 0.5 * (a + b + c)
+        area = max(s * (s - a) * (s - b) * (s - c), 0.0)
+        if area <= 0:
+            return np.inf
+        area = sqrt(area)
+        # circumradius formula: R = (a*b*c) / (4*area_triangle)
+        R = (a * b * c) / (4.0 * area)
+        return R
+
+    # Keep triangles with circumradius <= 1/alpha (common criterion). If alpha==0, keep none.
+    if alpha is None or alpha <= 0:
+        # treat as convex hull request
+        from shapely.geometry import MultiPoint
+        return MultiPoint(list(map(tuple, pts))).convex_hull
+
+    triangles_kept = []
+    for t in triangles:
+        R = triangle_circumradius(t)
+        if R <= 1.0 / float(alpha):
+            triangles_kept.append(Polygon(t))
+
+    if not triangles_kept:
+        from shapely.geometry import MultiPoint
+        return MultiPoint(list(map(tuple, pts))).convex_hull
+
+    union = unary_union(triangles_kept)
+    # polygonize the unioned triangles to produce polygons
+    polys = list(polygonize(union))
+    if not polys:
+        return union.convex_hull
+    if len(polys) == 1:
+        return polys[0]
+    return unary_union(polys)
+
+
+def export_rows_concave_hulls(voxels_csv_path, output_geojson_path, alpha=None, min_points=3, simplify_tolerance=0.0):
+    """Compute concave (alpha) hull per row_id from a voxels CSV and export GeoJSON.
+
+    Parameters
+    ----------
+    voxels_csv_path: path to CSV with columns at least ['x','y','cluster'] or ['x','y','row_id']
+    output_geojson_path: target GeoJSON file with polygons per row
+    alpha: float or None. If None or shapely unavailable, convex hull is used.
+    min_points: minimum number of points to build a polygon (else skipped)
+    simplify_tolerance: if >0, simplify polygon geometry by this tolerance (meters)
+    """
+    # read CSV
+    if not os.path.exists(voxels_csv_path):
+        raise FileNotFoundError(f"Voxels CSV not found: {voxels_csv_path}")
+    df = pd.read_csv(voxels_csv_path)
+    # prefer existing row_id column
+    if 'row_id' in df.columns:
+        group_col = 'row_id'
+    elif 'cluster' in df.columns:
+        # fallback: try mapping cluster==label -> row_id (user should have updated file earlier)
+        group_col = 'cluster'
+    else:
+        raise ValueError('CSV must contain column row_id or cluster')
+
+    features = []
+    # try shapely availability
+    shapely_available = True
+    try:
+        import shapely.geometry as _sg
+    except Exception:
+        shapely_available = False
+
+    for gid, g in df.groupby(group_col):
+        if pd.isna(gid):
+            continue
+        pts = g[['x', 'y']].dropna().values
+        if pts.shape[0] < min_points:
+            continue
+        poly_geom = None
+        if shapely_available:
+            try:
+                poly = _compute_alpha_shape(pts, alpha)
+                if simplify_tolerance and poly is not None:
+                    poly = poly.simplify(simplify_tolerance)
+                poly_geom = poly.__geo_interface__
+            except Exception as e:
+                # fallback to convex hull using scipy if alpha-shape fails
+                from scipy.spatial import ConvexHull
+                try:
+                    hull = ConvexHull(pts)
+                    hull_pts = pts[hull.vertices]
+                    poly_geom = {
+                        'type': 'Polygon',
+                        'coordinates': [hull_pts.tolist() + [hull_pts[0].tolist()]]
+                    }
+                except Exception:
+                    poly_geom = None
+        else:
+            # shapely not available -> convex hull
+            from scipy.spatial import ConvexHull
+            try:
+                hull = ConvexHull(pts)
+                hull_pts = pts[hull.vertices]
+                poly_geom = {
+                    'type': 'Polygon',
+                    'coordinates': [hull_pts.tolist() + [hull_pts[0].tolist()]]
+                }
+            except Exception:
+                poly_geom = None
+
+        if poly_geom is None:
+            continue
+
+        props = {'row_id': int(gid), 'n_voxels': int(len(g))}
+        features.append({'type': 'Feature', 'geometry': poly_geom, 'properties': props})
+
+    fc = {'type': 'FeatureCollection', 'features': features}
+    os.makedirs(os.path.dirname(output_geojson_path), exist_ok=True)
+    with open(output_geojson_path, 'w', encoding='utf-8') as f:
+        json.dump(fc, f, ensure_ascii=False, indent=2)
+
+    return output_geojson_path
+
+def compute_and_export_longest_lines(input_geojson, output_geojson, plot_png=None, crs=None, max_hull_vertices=2000):
+    """For each polygon feature in input_geojson compute the longest straight-line
+    segment between two boundary points (approximate diameter) and export as GeoJSON.
+
+    Also optionally save a PNG overlay plotting polygons and longest lines.
+    Returns path to output_geojson.
+    """
+    if not os.path.exists(input_geojson):
+        raise FileNotFoundError(f"Input geojson not found: {input_geojson}")
+
+    with open(input_geojson, 'r', encoding='utf-8') as f:
+        fc = json.load(f)
+
+    features_out = []
+    plot_polys = []
+    plot_lines = []
+
+    for feat in fc.get('features', []):
+        props = feat.get('properties', {})
+        gid = props.get('row_id', props.get('label', None))
+        geom = feat.get('geometry')
+        if geom is None:
+            continue
+        typ = geom.get('type')
+        coords = None
+        # handle Polygon or MultiPolygon
+        if typ == 'Polygon':
+            ring = geom.get('coordinates', [[]])[0]
+            coords = np.array(ring)
+        elif typ == 'MultiPolygon':
+            # choose largest polygon by area (approx via shoelace)
+            best = None
+            best_area = -1
+            for poly in geom.get('coordinates', []):
+                ring = np.array(poly[0])
+                if ring.shape[0] < 3:
+                    continue
+                # polygon area via shoelace
+                x = ring[:,0]; y = ring[:,1]
+                area = 0.5 * abs(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1)))
+                if area > best_area:
+                    best_area = area
+                    best = ring
+            coords = best
+        else:
+            # skip non-polygon geometries
+            continue
+
+        if coords is None or coords.shape[0] < 2:
+            continue
+
+        # reduce candidate points using convex hull of boundary if too many points
+        pts = coords.copy()
+        try:
+            if pts.shape[0] > max_hull_vertices:
+                from scipy.spatial import ConvexHull
+                hull = ConvexHull(pts)
+                pts_cand = pts[hull.vertices]
+            else:
+                pts_cand = pts
+        except Exception:
+            pts_cand = pts
+
+        # compute pairwise distances efficiently - if too many points, operate on candidates
+        n = pts_cand.shape[0]
+        if n < 2:
+            continue
+        if n < 3000:
+            # compute full distance matrix
+            dx = pts_cand[:, None, 0] - pts_cand[None, :, 0]
+            dy = pts_cand[:, None, 1] - pts_cand[None, :, 1]
+            dist2 = dx*dx + dy*dy
+            i, j = np.unravel_index(np.argmax(dist2), dist2.shape)
+            p1 = pts_cand[int(i)]; p2 = pts_cand[int(j)]
+        else:
+            # approximate: sample subset or use farthest point heuristic
+            # use pairwise between a random sample and all points
+            rng = np.random.default_rng(0)
+            sample_idx = rng.choice(n, size=min(500, n), replace=False)
+            sub = pts_cand[sample_idx]
+            # distances between sub and pts_cand
+            from scipy.spatial import distance_matrix
+            D = distance_matrix(sub, pts_cand)
+            idx = np.unravel_index(np.argmax(D), D.shape)
+            p1 = sub[int(idx[0])]; p2 = pts_cand[int(idx[1])]
+
+        length = float(np.linalg.norm(p2 - p1))
+        line_geom = {'type': 'LineString', 'coordinates': [[float(p1[0]), float(p1[1])], [float(p2[0]), float(p2[1])]]}
+
+        feat_line = {'type': 'Feature', 'geometry': line_geom, 'properties': {'row_id': int(gid) if gid is not None else None, 'max_length_m': length}}
+        features_out.append(feat_line)
+
+        # store for plotting
+        plot_polys.append(coords)
+        plot_lines.append((p1, p2))
+
+    out_fc = {'type': 'FeatureCollection', 'features': features_out}
+    if crs:
+        try:
+            out_fc['crs'] = {'type': 'name', 'properties': {'name': str(crs)}}
+        except Exception:
+            pass
+    os.makedirs(os.path.dirname(output_geojson), exist_ok=True)
+    with open(output_geojson, 'w', encoding='utf-8') as f:
+        json.dump(out_fc, f, ensure_ascii=False, indent=2)
+
+    # plot if requested
+    if plot_png:
+        plt.figure(figsize=(8,8))
+        for poly in plot_polys:
+            xs = poly[:,0]; ys = poly[:,1]
+            plt.fill(xs, ys, edgecolor='black', facecolor='none', linewidth=0.8)
+        for (p1,p2) in plot_lines:
+            plt.plot([p1[0], p2[0]], [p1[1], p2[1]], '-r', linewidth=1.5)
+        plt.gca().set_aspect('equal', adjustable='box')
+        plt.title('Longest lines per row (max segment)')
+        os.makedirs(os.path.dirname(plot_png), exist_ok=True)
+        plt.savefig(plot_png, dpi=150, bbox_inches='tight')
+        plt.close()
+
+    return output_geojson
+
 def pca_per_cluster(labels, mask, x_centers, y_centers, counts):
     """Calcule PCA pondérée pour chaque cluster (ignore label -1).
 
@@ -590,7 +858,7 @@ def get_principal_orientation_angle(pca_results, n_clusters=2):
     except Exception:
         return None
 
-
+#--
 
 # -------------------------
 # MAIN (variables à modifier ici)
@@ -608,12 +876,17 @@ def main():
     save_voxels_plot = False
     show_hough_binary = False
     save_hough_plot = False
-    show_dbscan = True
+    show_dbscan = False
     save_dbscan_plot = False
     show_cluster_centroids = False
     save_cluster_centroids_plot = False
     show_pca_axes = False
     save_pca_axes_plot = False
+    # hulls export
+    compute_row_hulls = True
+    hull_alpha = 0.1
+    hull_min_points = 8
+    hull_simplify = 0
 
     # paramètre Hough (seuil relatif)
     hough_threshold_rel = 0.25
@@ -814,6 +1087,91 @@ def main():
                 print('Recomposition des rangs non effectuée (centroids, spacing ou orientation manquants).')
         except Exception as e:
             print('Erreur lors de la recomposition des rangs:', e)
+
+        # --- Mettre à jour les fichiers voxels_non_vides (CSV + GeoJSON) en ajoutant row_id ---
+        try:
+            # construire mapping label -> row_id depuis df_rows si présent, sinon tenter de lire le CSV de sortie
+            rows_map = {}
+            if 'df_rows' in locals() and df_rows is not None and not df_rows.empty:
+                try:
+                    rows_map = df_rows.set_index('label')['row_id'].to_dict()
+                except Exception:
+                    rows_map = {}
+            else:
+                # lire le CSV écrit par recompose_rows_from_centroids si disponible
+                try:
+                    tmp = pd.read_csv(os.path.join(output_dir, 'centroids_rows.csv'))
+                    if 'label' in tmp.columns and 'row_id' in tmp.columns:
+                        rows_map = tmp.set_index('label')['row_id'].to_dict()
+                except Exception:
+                    rows_map = {}
+
+            vox_csv_path = os.path.join(output_dir, 'voxels_non_vides.csv')
+            vox_geo_path = os.path.join(output_dir, 'voxels_non_vides.geojson')
+
+            # Mettre à jour CSV si présent
+            if os.path.exists(vox_csv_path):
+                try:
+                    df_vox_non = pd.read_csv(vox_csv_path)
+                    # la colonne 'cluster' peut être vide/chaine; forcer en numérique
+                    if 'cluster' in df_vox_non.columns:
+                        df_vox_non['cluster'] = pd.to_numeric(df_vox_non['cluster'], errors='coerce')
+                        # mappe avec valeurs manquantes pour clusters inconnus
+                        df_vox_non['row_id'] = df_vox_non['cluster'].map(rows_map).astype('Int64')
+                    else:
+                        df_vox_non['row_id'] = pd.NA
+                    df_vox_non.to_csv(vox_csv_path, index=False)
+                    print(f"Mis à jour: {vox_csv_path} (colonne row_id ajoutée)")
+                except Exception as e:
+                    print('Erreur mise à jour CSV voxels_non_vides:', e)
+
+            # Mettre à jour GeoJSON si présent
+            if os.path.exists(vox_geo_path):
+                try:
+                    with open(vox_geo_path, 'r', encoding='utf-8') as f:
+                        fc = json.load(f)
+                    for feat in fc.get('features', []):
+                        props = feat.get('properties', {})
+                        cl = props.get('cluster', None)
+                        rid = None
+                        try:
+                            if cl is not None:
+                                rid = rows_map.get(int(cl))
+                        except Exception:
+                            rid = None
+                        props['row_id'] = int(rid) if rid is not None else None
+                        feat['properties'] = props
+                    with open(vox_geo_path, 'w', encoding='utf-8') as f:
+                        json.dump(fc, f, ensure_ascii=False, indent=2)
+                    print(f"Mis à jour: {vox_geo_path} (propriété row_id ajoutée)")
+                except Exception as e:
+                    print('Erreur mise à jour GeoJSON voxels_non_vides:', e)
+        except Exception as e:
+            print('Erreur lors de la mise à jour des voxels_non_vides avec row_id:', e)
+
+        # --- Exporter enveloppes (concave/alpha-shape) par rang -> GeoJSON (QGIS) ---
+        try:
+            if compute_row_hulls:
+                vox_csv_path = os.path.join(output_dir, 'voxels_non_vides.csv')
+                rows_hulls_out = os.path.join(output_dir, 'rows_hulls.geojson')
+                if os.path.exists(vox_csv_path):
+                    try:
+                        export_rows_concave_hulls(vox_csv_path, rows_hulls_out, alpha=hull_alpha, min_points=hull_min_points, simplify_tolerance=hull_simplify)
+                        print(f"Enveloppes des rangs exportées: {rows_hulls_out}")
+                        # calculer aussi la ligne maximale pour chaque shape et sauvegarder
+                        try:
+                            rows_lines_out = os.path.join(output_dir, 'rows_hulls_max_lines.geojson')
+                            rows_lines_png = os.path.join(output_dir, 'rows_hulls_max_lines.png')
+                            compute_and_export_longest_lines(rows_hulls_out, rows_lines_out, plot_png=rows_lines_png)
+                            print(f"Lignes maximales par rang exportées: {rows_lines_out} (plot: {rows_lines_png})")
+                        except Exception as e:
+                            print('Erreur calcul lignes maximales par rang:', e)
+                    except Exception as e:
+                        print('Erreur lors du calcul/export des enveloppes des rangs:', e)
+                else:
+                    print(f"CSV voxels non-vides introuvable pour hulls: {vox_csv_path}")
+        except Exception as e:
+            print('Erreur globale lors de l\'export des enveloppes des rangs:', e)
 
 def recompose_rows_from_centroids(centroids, theta_deg, spacing_m, tolerance=0.4, output_csv=None, output_geojson=None, bins_frac=50):
     """
