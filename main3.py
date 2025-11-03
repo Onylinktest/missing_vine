@@ -694,6 +694,13 @@ def compute_and_export_longest_lines(input_geojson, output_geojson, plot_png=Non
             plt.fill(xs, ys, edgecolor='black', facecolor='none', linewidth=0.8)
         for (p1,p2) in plot_lines:
             plt.plot([p1[0], p2[0]], [p1[1], p2[1]], '-r', linewidth=1.5)
+        # draw crosses at endpoints for visibility
+        try:
+            for (p1,p2) in plot_lines:
+                plt.plot([p1[0]], [p1[1]], marker='x', color='blue', markersize=6, markeredgewidth=1.5)
+                plt.plot([p2[0]], [p2[1]], marker='x', color='blue', markersize=6, markeredgewidth=1.5)
+        except Exception:
+            pass
         plt.gca().set_aspect('equal', adjustable='box')
         plt.title('Longest lines per row (max segment)')
         os.makedirs(os.path.dirname(plot_png), exist_ok=True)
@@ -1164,6 +1171,30 @@ def main():
                             rows_lines_png = os.path.join(output_dir, 'rows_hulls_max_lines.png')
                             compute_and_export_longest_lines(rows_hulls_out, rows_lines_out, plot_png=rows_lines_png)
                             print(f"Lignes maximales par rang exportées: {rows_lines_out} (plot: {rows_lines_png})")
+                            # Recreate cep modelling: compute theoretical positions along longest line per row
+                            try:
+                                rows_lines_in = rows_lines_out
+                                ceps_csv = os.path.join(output_dir, 'ceps_model.csv')
+                                ceps_geo = os.path.join(output_dir, 'ceps_model.geojson')
+                                intercep_use = None
+                                try:
+                                    intercep_use = float(intercep) if intercep is not None else None
+                                except Exception:
+                                    intercep_use = None
+
+                                if intercep_use is not None and os.path.exists(rows_lines_in):
+                                    try:
+                                        df_ceps = generate_and_export_ceps(rows_lines_in, intercep_use,
+                                                                          existing_points=np.column_stack((xs, ys)),
+                                                                          presence_tol=0.5, ambiguous_tol=1.5,
+                                                                          output_csv=ceps_csv, output_geojson=ceps_geo)
+                                        print(f"Modèle des ceps exporté: {ceps_csv}, {ceps_geo}")
+                                    except Exception as e:
+                                        print('Erreur lors de la modélisation des ceps:', e)
+                                else:
+                                    print('Modélisation des ceps non exécutée (intercep absent ou rows_lines manquant).')
+                            except Exception as e:
+                                print('Erreur globale modélisation ceps:', e)
                         except Exception as e:
                             print('Erreur calcul lignes maximales par rang:', e)
                     except Exception as e:
@@ -1309,6 +1340,153 @@ def recompose_rows_from_centroids(centroids, theta_deg, spacing_m, tolerance=0.4
             print("Erreur lors de la sauvegarde GeoJSON:", e)
 
     return df_out
+
+
+def generate_and_export_ceps(rows_lines_geojson, s, existing_points=None,
+                             presence_tol=0.5, ambiguous_tol=1.5,
+                             output_csv=None, output_geojson=None, crs=None):
+    """Model ceps along each line feature in a lines GeoJSON.
+
+    Parameters
+    ----------
+    rows_lines_geojson : str
+        Path to GeoJSON with LineString features per row (properties must include 'row_id').
+    s : float
+        Nominal inter-cep spacing in meters.
+    existing_points : array-like Nx2, optional
+        Measured points to compare against for presence/ambiguity detection.
+    presence_tol, ambiguous_tol : float
+        Distance thresholds (m) for status assignment.
+    output_csv, output_geojson : str
+        Output paths to save modeled ceps.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Modeled ceps with columns ['row_id','seq','x','y','status','nearest_dist_m']
+    """
+    if not os.path.exists(rows_lines_geojson):
+        raise FileNotFoundError(f"Rows lines GeoJSON not found: {rows_lines_geojson}")
+    if s is None or s <= 0:
+        raise ValueError('spacing s must be positive')
+
+    with open(rows_lines_geojson, 'r', encoding='utf-8') as f:
+        fc = json.load(f)
+
+    # prepare KDTree if possible
+    ep = None
+    tree = None
+    try:
+        if existing_points is not None:
+            ep = np.asarray(existing_points, dtype=float)
+            if ep.ndim == 1 and ep.size == 2:
+                ep = ep.reshape(1, 2)
+            from scipy.spatial import cKDTree
+            if ep.size > 0:
+                tree = cKDTree(ep)
+    except Exception:
+        tree = None
+        if existing_points is not None:
+            ep = np.asarray(existing_points, dtype=float)
+
+    records = []
+
+    for feat in fc.get('features', []):
+        props = feat.get('properties', {})
+        rid = props.get('row_id', props.get('label', None))
+        geom = feat.get('geometry')
+        if geom is None:
+            continue
+        typ = geom.get('type')
+        if typ != 'LineString':
+            # skip non-lines
+            continue
+        coords = geom.get('coordinates', [])
+        if len(coords) < 2:
+            continue
+        p1 = np.array(coords[0], dtype=float)
+        p2 = np.array(coords[-1], dtype=float)
+        vec = p2 - p1
+        L = float(np.linalg.norm(vec))
+        if L <= 0:
+            continue
+
+        n = int(np.floor(L / float(s)))
+        if n <= 0:
+            continue
+        r = L - n * float(s)
+        m = r / 2.0
+
+        if n == 1:
+            dists = np.array([L / 2.0])
+        else:
+            # positions are evenly distributed between start+m and end-m (inclusive)
+            dists = np.linspace(m, L - m, n)
+
+        for seq, d in enumerate(dists):
+            frac = d / L
+            pt = p1 + frac * vec
+            nearest = None
+            status = 'missing'
+            if tree is not None:
+                try:
+                    dd, _ = tree.query(pt, k=1)
+                    nearest = float(dd)
+                except Exception:
+                    nearest = None
+            elif ep is not None and ep.size > 0:
+                dd = np.hypot(ep[:, 0] - pt[0], ep[:, 1] - pt[1])
+                nearest = float(np.min(dd))
+
+            if nearest is None:
+                status = 'unknown'
+            else:
+                if nearest <= presence_tol:
+                    status = 'present'
+                elif nearest <= ambiguous_tol:
+                    status = 'ambiguous'
+                else:
+                    status = 'missing'
+
+            records.append({'row_id': int(rid) if rid is not None else None,
+                            'seq': int(seq), 'x': float(pt[0]), 'y': float(pt[1]),
+                            'status': status, 'nearest_dist_m': nearest})
+
+    df_ceps = pd.DataFrame.from_records(records, columns=['row_id', 'seq', 'x', 'y', 'status', 'nearest_dist_m'])
+
+    if output_csv:
+        try:
+            os.makedirs(os.path.dirname(output_csv), exist_ok=True)
+            df_ceps.to_csv(output_csv, index=False)
+        except Exception as e:
+            print('Erreur export CSV ceps:', e)
+
+    if output_geojson:
+        try:
+            feats_out = []
+            for _, r in df_ceps.iterrows():
+                props = {'row_id': int(r['row_id']) if pd.notna(r['row_id']) else None, 'seq': int(r['seq']), 'status': str(r['status'])}
+                if pd.notna(r['nearest_dist_m']):
+                    props['nearest_dist_m'] = float(r['nearest_dist_m'])
+                geom = {'type': 'Point', 'coordinates': [float(r['x']), float(r['y'])]}
+                feats_out.append({'type': 'Feature', 'geometry': geom, 'properties': props})
+            out_fc = {'type': 'FeatureCollection', 'features': feats_out}
+            if crs:
+                try:
+                    out_fc['crs'] = {'type': 'name', 'properties': {'name': str(crs)}}
+                except Exception:
+                    pass
+            os.makedirs(os.path.dirname(output_geojson), exist_ok=True)
+            with open(output_geojson, 'w', encoding='utf-8') as f:
+                json.dump(out_fc, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print('Erreur export GeoJSON ceps:', e)
+
+    return df_ceps
+
+
+ 
+
 
 
 if __name__ == "__main__":
