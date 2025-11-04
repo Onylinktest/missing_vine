@@ -702,6 +702,71 @@ def compute_and_export_longest_lines(input_geojson, output_geojson, plot_png=Non
 
     return output_geojson
 
+def compute_and_export_oriented_lines(input_geojson, output_geojson, angle_deg, plot_png=None, keep_length=True):
+    """Centre et oriente chaque ligne selon angle_deg en conservant sa longueur.
+
+    - input_geojson: GeoJSON des lignes (LineString)
+    - output_geojson: chemin de sortie pour les lignes orientées
+    - angle_deg: orientation cible en degrés (0..180)
+    - plot_png: optionnel, image d'aperçu
+    - keep_length: conserve la longueur d'origine de chaque ligne
+    """
+    if not os.path.exists(input_geojson):
+        raise FileNotFoundError(f"Input geojson not found: {input_geojson}")
+    with open(input_geojson, 'r', encoding='utf-8') as f:
+        fc = json.load(f)
+
+    theta = float(angle_deg) % 180.0
+    rad = np.deg2rad(theta)
+    u = np.array([np.cos(rad), np.sin(rad)], dtype=float)
+
+    features_out = []
+    plot_lines = []
+
+    for feat in fc.get('features', []):
+        geom = feat.get('geometry')
+        if not geom or geom.get('type') != 'LineString':
+            continue
+        coords = geom.get('coordinates', [])
+        if not coords or len(coords) < 2:
+            continue
+        p1 = np.array(coords[0], dtype=float)
+        p2 = np.array(coords[-1], dtype=float)
+        M = 0.5 * (p1 + p2)
+        L = float(np.linalg.norm(p2 - p1)) if keep_length else float(np.linalg.norm(p2 - p1))
+        half = 0.5 * L
+        a = M - half * u
+        b = M + half * u
+
+        new_geom = {
+            'type': 'LineString',
+            'coordinates': [[float(a[0]), float(a[1])], [float(b[0]), float(b[1])]]
+        }
+        props = dict(feat.get('properties', {}))
+        props['oriented'] = True
+        props['angle_deg'] = theta
+        props['orig_length_m'] = float(np.linalg.norm(p2 - p1))
+        props['new_length_m'] = float(np.linalg.norm(b - a))
+        features_out.append({'type': 'Feature', 'geometry': new_geom, 'properties': props})
+        plot_lines.append((a, b))
+
+    out_fc = {'type': 'FeatureCollection', 'features': features_out}
+    os.makedirs(os.path.dirname(output_geojson), exist_ok=True)
+    with open(output_geojson, 'w', encoding='utf-8') as f:
+        json.dump(out_fc, f, ensure_ascii=False, indent=2)
+
+    if plot_png:
+        plt.figure(figsize=(8,8))
+        for (a,b) in plot_lines:
+            plt.plot([a[0], b[0]], [a[1], b[1]], '-r', linewidth=1.4)
+        plt.gca().set_aspect('equal', adjustable='box')
+        plt.title(f'Lines oriented to {theta:.2f}°')
+        os.makedirs(os.path.dirname(plot_png), exist_ok=True)
+        plt.savefig(plot_png, dpi=150, bbox_inches='tight')
+        plt.close()
+
+    return output_geojson
+
 def pca_per_cluster(labels, mask, x_centers, y_centers, counts):
     """Calcule PCA pondérée pour chaque cluster (ignore label -1).
 
@@ -1166,6 +1231,19 @@ def main():
                             print(f"Lignes maximales par rang exportées: {rows_lines_out} (plot: {rows_lines_png})")
                         except Exception as e:
                             print('Erreur calcul lignes maximales par rang:', e)
+
+                        # Orientation des lignes selon fft_angle (si disponible)
+                        try:
+                            rows_lines_out = os.path.join(output_dir, 'rows_hulls_max_lines.geojson')
+                            if ('fft_angle' in locals()) and (fft_angle is not None) and not (isinstance(fft_angle, float) and np.isnan(fft_angle)) and os.path.exists(rows_lines_out):
+                                rows_lines_oriented_out = os.path.join(output_dir, 'rows_hulls_max_lines_oriented_fft.geojson')
+                                rows_lines_oriented_png = os.path.join(output_dir, 'rows_hulls_max_lines_oriented_fft.png')
+                                compute_and_export_oriented_lines(rows_lines_out, rows_lines_oriented_out, fft_angle, plot_png=rows_lines_oriented_png)
+                                print(f"Lignes orientées (FFT) exportées: {rows_lines_oriented_out} (plot: {rows_lines_oriented_png})")
+                            else:
+                                print('Angle FFT indisponible ou lignes manquantes: orientation des lignes non effectuée.')
+                        except Exception as e:
+                            print('Erreur lors de l\'orientation des lignes (FFT):', e)
                     except Exception as e:
                         print('Erreur lors du calcul/export des enveloppes des rangs:', e)
                 else:

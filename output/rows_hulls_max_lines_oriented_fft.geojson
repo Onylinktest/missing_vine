@@ -1,0 +1,1037 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770206.2576310562,
+            6270782.161631322
+          ],
+          [
+            770160.502368944,
+            6270810.2983686775
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281028,
+        "max_length_m": 53.71424392116978,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 53.71424392116978,
+        "new_length_m": 53.71424392094381
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770225.8365795026,
+            6270767.890695556
+          ],
+          [
+            770159.5234204975,
+            6270808.669304443
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281027,
+        "max_length_m": 77.84812136455815,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.84812136455815,
+        "new_length_m": 77.84812136426268
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770224.1626896106,
+            6270765.205386405
+          ],
+          [
+            770157.8973103894,
+            6270805.954613595
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281026,
+        "max_length_m": 77.79203043973718,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.79203043973718,
+        "new_length_m": 77.79203043976064
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770221.3158133156,
+            6270763.956911445
+          ],
+          [
+            770156.8441866846,
+            6270803.603088556
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281025,
+        "max_length_m": 75.68626031170054,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 75.68626031170054,
+        "new_length_m": 75.68626031174459
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770221.5954667837,
+            6270760.92373642
+          ],
+          [
+            770155.0645332164,
+            6270801.836263579
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281024,
+        "max_length_m": 78.10377711686682,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.10377711686682,
+        "new_length_m": 78.10377711649853
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770220.2867985114,
+            6270759.432801867
+          ],
+          [
+            770154.2732014887,
+            6270800.027198132
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281023,
+        "max_length_m": 77.49645153152856,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.49645153152856,
+        "new_length_m": 77.49645153178936
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770219.0881377873,
+            6270757.147496317
+          ],
+          [
+            770152.4718622128,
+            6270798.112503683
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281022,
+        "max_length_m": 78.20396409391992,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.20396409391992,
+        "new_length_m": 78.20396409371149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770217.6594632233,
+            6270754.8648404
+          ],
+          [
+            770152.4005367768,
+            6270794.995159599
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281021,
+        "max_length_m": 76.61050841730822,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 76.61050841730822,
+        "new_length_m": 76.61050841716933
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770216.4544879935,
+            6270752.456694926
+          ],
+          [
+            770149.7055120067,
+            6270793.503305075
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281020,
+        "max_length_m": 78.35974731947736,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.35974731947736,
+        "new_length_m": 78.3597473195636
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770215.010820104,
+            6270750.748777026
+          ],
+          [
+            770149.049179896,
+            6270791.311222972
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281019,
+        "max_length_m": 77.43545699484184,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699484184,
+        "new_length_m": 77.43545699522026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770213.337298186,
+            6270748.363241593
+          ],
+          [
+            770147.4227018142,
+            6270788.896758406
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281018,
+        "max_length_m": 77.38023003339075,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.38023003339075,
+        "new_length_m": 77.38023003387313
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770211.9033645287,
+            6270746.372614762
+          ],
+          [
+            770145.8566354716,
+            6270786.987385238
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281017,
+        "max_length_m": 77.53534677765255,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.53534677765255,
+        "new_length_m": 77.5353467777202
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770211.0954667841,
+            6270744.12373642
+          ],
+          [
+            770144.5645332161,
+            6270785.03626358
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281016,
+        "max_length_m": 78.10377711783984,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.10377711783984,
+        "new_length_m": 78.10377711806922
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770209.895466784,
+            6270742.02373642
+          ],
+          [
+            770143.3645332162,
+            6270782.936263581
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281015,
+        "max_length_m": 78.10377711735333,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.10377711735333,
+        "new_length_m": 78.10377711787089
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770208.1365795028,
+            6270739.690695557
+          ],
+          [
+            770141.8234204974,
+            6270780.469304443
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281014,
+        "max_length_m": 77.84812136504625,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.84812136504625,
+        "new_length_m": 77.84812136465935
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770207.1288986923,
+            6270738.014671797
+          ],
+          [
+            770140.731101308,
+            6270778.8453282025
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281013,
+        "max_length_m": 77.94748231980876,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.94748231980876,
+        "new_length_m": 77.94748231978757
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770205.6129123194,
+            6270735.774502456
+          ],
+          [
+            770139.247087681,
+            6270776.585497543
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281012,
+        "max_length_m": 77.90994801672697,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.90994801672697,
+        "new_length_m": 77.909948016465
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770202.0644393825,
+            6270734.772985303
+          ],
+          [
+            770138.2955606178,
+            6270773.987014695
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281011,
+        "max_length_m": 74.86127169689023,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 74.86127169689023,
+        "new_length_m": 74.86127169693434
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770202.9697923587,
+            6270731.481765638
+          ],
+          [
+            770136.7902076415,
+            6270772.178234362
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281010,
+        "max_length_m": 77.69131225555878,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.69131225555878,
+        "new_length_m": 77.69131225518237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770201.403364529,
+            6270729.572614762
+          ],
+          [
+            770135.356635471,
+            6270770.187385238
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281009,
+        "max_length_m": 77.53534677871784,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.53534677871784,
+        "new_length_m": 77.53534677851353
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770199.0338674942,
+            6270727.822821225
+          ],
+          [
+            770134.126132506,
+            6270767.7371787755
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281008,
+        "max_length_m": 76.19822832574667,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 76.19822832574667,
+        "new_length_m": 76.19822832566636
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770198.5569934973,
+            6270725.623829095
+          ],
+          [
+            770134.3030065028,
+            6270765.136170905
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281007,
+        "max_length_m": 75.43076295494112,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 75.43076295494112,
+        "new_length_m": 75.43076295538108
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770195.9658047014,
+            6270723.99915773
+          ],
+          [
+            770131.7941952988,
+            6270763.4608422695
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281006,
+        "max_length_m": 75.33405604394804,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 75.33405604394804,
+        "new_length_m": 75.33405604407577
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770196.203723794,
+            6270720.899405851
+          ],
+          [
+            770129.7562762062,
+            6270761.760594149
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281005,
+        "max_length_m": 78.00576901775989,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 78.00576901775989,
+        "new_length_m": 78.00576901779117
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770194.6108201041,
+            6270718.948777027
+          ],
+          [
+            770128.6491798961,
+            6270759.5112229735
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281004,
+        "max_length_m": 77.43545699484184,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699484184,
+        "new_length_m": 77.43545699522026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770193.1108201041,
+            6270716.548777027
+          ],
+          [
+            770127.1491798961,
+            6270757.111222973
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281003,
+        "max_length_m": 77.43545699484184,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699484184,
+        "new_length_m": 77.43545699522026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770191.9108201041,
+            6270714.448777027
+          ],
+          [
+            770125.949179896,
+            6270755.0112229735
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281002,
+        "max_length_m": 77.43545699484184,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699484184,
+        "new_length_m": 77.43545699522026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770190.7108201042,
+            6270712.348777026
+          ],
+          [
+            770124.7491798957,
+            6270752.911222972
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281001,
+        "max_length_m": 77.43545699542815,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699542815,
+        "new_length_m": 77.43545699561692
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770188.9261920007,
+            6270710.873806211
+          ],
+          [
+            770123.5338079992,
+            6270751.086193788
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2281000,
+        "max_length_m": 76.76718048810247,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 76.76718048810247,
+        "new_length_m": 76.76718048763328
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770188.1626896106,
+            6270708.205386405
+          ],
+          [
+            770121.8973103894,
+            6270748.954613595
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280999,
+        "max_length_m": 77.79203043983685,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.79203043983685,
+        "new_length_m": 77.79203043976064
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770186.8778274735,
+            6270706.157571522
+          ],
+          [
+            770120.7821725267,
+            6270746.802428479
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280998,
+        "max_length_m": 77.59278316947267,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.59278316947267,
+        "new_length_m": 77.592783169271
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770185.2851143884,
+            6270703.906825487
+          ],
+          [
+            770119.6748856117,
+            6270744.253174514
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280997,
+        "max_length_m": 77.02291866667984,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.02291866667984,
+        "new_length_m": 77.02291866671833
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770184.0697923587,
+            6270701.781765637
+          ],
+          [
+            770117.8902076415,
+            6270742.478234361
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280996,
+        "max_length_m": 77.69131225565813,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.69131225565813,
+        "new_length_m": 77.69131225518237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770183.154740495,
+            6270699.841021629
+          ],
+          [
+            770117.0052595051,
+            6270740.51897837
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280995,
+        "max_length_m": 77.65597208126235,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.65597208126235,
+        "new_length_m": 77.65597208122924
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770181.6033645287,
+            6270697.472614761
+          ],
+          [
+            770115.5566354714,
+            6270738.087385237
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280994,
+        "max_length_m": 77.5353467777521,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.5353467777521,
+        "new_length_m": 77.53534677791853
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770180.2108201041,
+            6270695.548777027
+          ],
+          [
+            770114.2491798959,
+            6270736.111222973
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280993,
+        "max_length_m": 77.43545699494106,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699494106,
+        "new_length_m": 77.43545699541859
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770178.7108201041,
+            6270693.448777027
+          ],
+          [
+            770112.7491798959,
+            6270734.0112229735
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280992,
+        "max_length_m": 77.43545699494106,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699494106,
+        "new_length_m": 77.43545699541859
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770177.5519832621,
+            6270691.415705145
+          ],
+          [
+            770111.808016738,
+            6270731.844294853
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280991,
+        "max_length_m": 77.1799196682264,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.1799196682264,
+        "new_length_m": 77.17991966844951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770176.010820104,
+            6270689.248777026
+          ],
+          [
+            770110.049179896,
+            6270729.811222972
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280990,
+        "max_length_m": 77.43545699484184,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.43545699484184,
+        "new_length_m": 77.43545699522026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770175.0697923587,
+            6270686.781765637
+          ],
+          [
+            770108.8902076415,
+            6270727.478234361
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280989,
+        "max_length_m": 77.69131225565813,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.69131225565813,
+        "new_length_m": 77.69131225518237
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770173.7372981859,
+            6270684.763241594
+          ],
+          [
+            770107.8227018141,
+            6270725.296758407
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280988,
+        "max_length_m": 77.38023003339075,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.38023003339075,
+        "new_length_m": 77.38023003387313
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770172.4778274735,
+            6270682.757571521
+          ],
+          [
+            770106.3821725266,
+            6270723.402428479
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280987,
+        "max_length_m": 77.59278316996237,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 77.59278316996237,
+        "new_length_m": 77.59278316946933
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            770170.9674065409,
+            6270680.640702734
+          ],
+          [
+            770105.7925934594,
+            6270720.719297266
+          ]
+        ]
+      },
+      "properties": {
+        "row_id": -2280986,
+        "max_length_m": 76.51176380098073,
+        "oriented": true,
+        "angle_deg": 148.41098189943,
+        "orig_length_m": 76.51176380098073,
+        "new_length_m": 76.51176380047298
+      }
+    }
+  ]
+}
