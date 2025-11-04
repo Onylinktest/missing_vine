@@ -58,8 +58,23 @@ def load_points(path="data/parcel.csv", classification=4):
         xcol, ycol = possible[0], possible[1]
     xs = df_f[xcol].values
     ys = df_f[ycol].values
-    zs = df_f[[c for c in df_f.columns if c.lower()=="z" or c=="Z"][0]].values if any(c.lower()=="z" or c=="Z" for c in df_f.columns) else np.zeros_like(xs)
-    return xs, ys, zs
+    # Z column (case-insensitive)
+    z_col = None
+    for c in df_f.columns:
+        if c.lower() == 'z':
+            z_col = c
+            break
+    zs = df_f[z_col].values if z_col is not None else np.zeros_like(xs)
+
+    # Intensity column optional (case-insensitive)
+    intensity_col = None
+    for c in df_f.columns:
+        if c.lower() == 'intensity':
+            intensity_col = c
+            break
+    intensities = df_f[intensity_col].values if intensity_col is not None else None
+
+    return xs, ys, zs, intensities
 
 # -------------------------
 # Affichage points
@@ -81,7 +96,7 @@ def plot_points(xs, ys, title="Points (Classification sélectionnée)", save_pat
 # -------------------------
 # Voxelisation 2D (histogramme)
 # -------------------------
-def voxelize_2d(xs, ys, voxel_size=0.3, method="count"):
+def voxelize_2d(xs, ys, voxel_size=0.3, method="count", zs=None, intensities=None, return_stats=False):
     """
     Retourne:
       counts: 2D ndarray (ny, nx) avec comptages par voxel
@@ -101,7 +116,104 @@ def voxelize_2d(xs, ys, voxel_size=0.3, method="count"):
     counts = counts.T  # now shape (ny, nx) corresponding to Y rows, X cols
     x_centers = (x_edges[:-1] + x_edges[1:]) / 2
     y_centers = (y_edges[:-1] + y_edges[1:]) / 2
-    return counts, x_edges, y_edges, x_centers, y_centers
+
+    if not return_stats:
+        return counts, x_edges, y_edges, x_centers, y_centers
+
+    # --- compute per-voxel statistics using pandas groupby for robustness ---
+    # Expected shape: counts is (ny, nx) where ny = len(y_centers), nx = len(x_centers)
+    nx = len(x_centers)
+    ny = len(y_centers)
+
+    # Prepare indices mapping each point to its voxel (ix, iy)
+    # Use searchsorted consistent with histogram2d bin edges
+    ix = np.searchsorted(x_edges, xs, side='right') - 1
+    iy = np.searchsorted(y_edges, ys, side='right') - 1
+    # clamp to valid bin indices
+    ix = np.clip(ix, 0, nx-1)
+    iy = np.clip(iy, 0, ny-1)
+
+    dfp = pd.DataFrame({'ix': ix.astype(int), 'iy': iy.astype(int)})
+    # z statistics
+    if zs is None:
+        dfp['z'] = np.nan
+    else:
+        dfp['z'] = np.asarray(zs, dtype=float)
+    # intensity optional
+    if intensities is None:
+        dfp['intensity'] = np.nan
+    else:
+        dfp['intensity'] = np.asarray(intensities, dtype=float)
+
+    # group and aggregate
+    grp = dfp.groupby(['iy', 'ix'])
+    agg_z = grp['z'].agg(['count', 'min', 'max', 'mean', 'std']).reset_index()
+    agg_int = None
+    if 'intensity' in dfp.columns and not np.all(np.isnan(dfp['intensity'].values)):
+        agg_int = grp['intensity'].agg(['mean', 'std']).reset_index()
+
+    # initialize arrays
+    z_min = np.full((ny, nx), np.nan, dtype=float)
+    z_max = np.full((ny, nx), np.nan, dtype=float)
+    z_mean = np.full((ny, nx), np.nan, dtype=float)
+    z_std = np.full((ny, nx), np.nan, dtype=float)
+    canopy_height = np.full((ny, nx), np.nan, dtype=float)
+    point_density = np.full((ny, nx), np.nan, dtype=float)
+    intensity_mean = np.full((ny, nx), np.nan, dtype=float) if agg_int is not None else None
+    intensity_std = np.full((ny, nx), np.nan, dtype=float) if agg_int is not None else None
+
+    # fill with aggregated values
+    for _, row in agg_z.iterrows():
+        r = int(row['iy']); c = int(row['ix'])
+        cnt = float(row['count'])
+        zminv = float(row['min']) if not np.isnan(row['min']) else np.nan
+        zmaxv = float(row['max']) if not np.isnan(row['max']) else np.nan
+        zmeanv = float(row['mean']) if not np.isnan(row['mean']) else np.nan
+        zstdv = float(row['std']) if not np.isnan(row['std']) else np.nan
+        z_min[r, c] = zminv
+        z_max[r, c] = zmaxv
+        z_mean[r, c] = zmeanv
+        z_std[r, c] = zstdv
+        if not np.isnan(zminv) and not np.isnan(zmaxv):
+            canopy_height[r, c] = zmaxv - zminv
+        else:
+            canopy_height[r, c] = np.nan
+
+        # compute voxel volume assumption: voxel_area * height
+        voxel_area = float(voxel_size) * float(voxel_size)
+        height = canopy_height[r, c]
+        # If canopy height is zero/NaN, assume height = 1.0 m for density (user can change)
+        if height is None or np.isnan(height) or height <= 1e-6:
+            height = 1.0
+        voxel_volume = voxel_area * height
+        point_density[r, c] = cnt / voxel_volume if voxel_volume > 0 else np.nan
+
+    # fill intensity if available
+    if agg_int is not None and intensity_mean is not None:
+        for _, row in agg_int.iterrows():
+            r = int(row['iy']); c = int(row['ix'])
+            intensity_mean[r, c] = float(row['mean']) if not np.isnan(row['mean']) else np.nan
+            intensity_std[r, c] = float(row['std']) if not np.isnan(row['std']) else np.nan
+
+    # replace NaN std with 0 as requested
+    z_std[np.isnan(z_std)] = 0.0
+    # if intensity stats were computed, replace NaN std with 0 as well
+    if intensity_std is not None:
+        intensity_std[np.isnan(intensity_std)] = 0.0
+
+    stats = {
+        'z_min': z_min,
+        'z_max': z_max,
+        'z_mean': z_mean,
+        'z_std': z_std,
+        'canopy_height': canopy_height,
+        'point_density': point_density,
+        'intensity_mean': intensity_mean,
+        'intensity_std': intensity_std,
+        'voxel_area': voxel_size * voxel_size,
+    }
+
+    return counts, x_edges, y_edges, x_centers, y_centers, stats
 
 def plot_voxels(counts, x_edges, y_edges, title="Voxel density", save_path=None, show=True):
     extent = [x_edges[0], x_edges[-1], y_edges[0], y_edges[-1]]
@@ -360,9 +472,10 @@ def plot_cluster_centroids(centroids, title='Cluster centroids', save_path=None,
         plt.close()
 
 # --- Export pour QGIS: CSV et GeoJSON ---
-def export_voxels_to_csv(path, counts, x_centers, y_centers, mask=None, labels=None):
+def export_voxels_to_csv(path, counts, x_centers, y_centers, mask=None, labels=None, stats=None):
     """Export des voxels non-vides en CSV (x,y,count,cluster).
     labels doit être un array 1D correspondant aux positions True dans mask (ou None).
+    stats: optional dict returned by voxelize_2d when return_stats=True. Keys are arrays of shape (ny,nx).
     """
     if mask is None:
         mask = counts > 0
@@ -370,15 +483,31 @@ def export_voxels_to_csv(path, counts, x_centers, y_centers, mask=None, labels=N
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'w', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['x','y','count','cluster'])
+        # header
+        header = ['x', 'y', 'count', 'cluster']
+        if stats is not None:
+            header += ['z_min', 'z_max', 'z_mean', 'z_std', 'canopy_height', 'point_density', 'intensity_mean', 'intensity_std']
+        writer.writerow(header)
         for idx, (r, c) in enumerate(zip(rows, cols)):
             x = float(x_centers[c])
             y = float(y_centers[r])
             cnt = int(counts[r, c])
             cl = int(labels[idx]) if (labels is not None) else ''
-            writer.writerow([x, y, cnt, cl])
+            row = [x, y, cnt, cl]
+            if stats is not None:
+                # Safely index stats arrays (they may contain NaNs)
+                zmin = stats.get('z_min')[r, c] if stats.get('z_min') is not None else np.nan
+                zmax = stats.get('z_max')[r, c] if stats.get('z_max') is not None else np.nan
+                zmean = stats.get('z_mean')[r, c] if stats.get('z_mean') is not None else np.nan
+                zstd = stats.get('z_std')[r, c] if stats.get('z_std') is not None else np.nan
+                ch = stats.get('canopy_height')[r, c] if stats.get('canopy_height') is not None else np.nan
+                pdens = stats.get('point_density')[r, c] if stats.get('point_density') is not None else np.nan
+                im = stats.get('intensity_mean')[r, c] if stats.get('intensity_mean') is not None else np.nan
+                istd = stats.get('intensity_std')[r, c] if stats.get('intensity_std') is not None else np.nan
+                row += [zmin, zmax, zmean, zstd, ch, pdens, im, istd]
+            writer.writerow(row)
 
-def export_voxels_to_geojson(path, counts, x_edges, y_edges, x_centers, y_centers, mask=None, labels=None, as_polygons=False):
+def export_voxels_to_geojson(path, counts, x_edges, y_edges, x_centers, y_centers, mask=None, labels=None, as_polygons=False, stats=None):
     """Export GeoJSON FeatureCollection. Par défaut exporte des points (centers).
     Si as_polygons=True, chaque voxel est exporté comme polygone à partir des edges.
     """
@@ -392,6 +521,20 @@ def export_voxels_to_geojson(path, counts, x_edges, y_edges, x_centers, y_center
         props = {'count': cnt}
         if labels is not None:
             props['cluster'] = int(labels[idx])
+        if stats is not None:
+            # add stats properties (may be NaN)
+            try:
+                props['z_min'] = float(stats.get('z_min')[r, c]) if stats.get('z_min') is not None else None
+                props['z_max'] = float(stats.get('z_max')[r, c]) if stats.get('z_max') is not None else None
+                props['z_mean'] = float(stats.get('z_mean')[r, c]) if stats.get('z_mean') is not None else None
+                props['z_std'] = float(stats.get('z_std')[r, c]) if stats.get('z_std') is not None else None
+                props['canopy_height'] = float(stats.get('canopy_height')[r, c]) if stats.get('canopy_height') is not None else None
+                props['point_density'] = float(stats.get('point_density')[r, c]) if stats.get('point_density') is not None else None
+                props['intensity_mean'] = float(stats.get('intensity_mean')[r, c]) if stats.get('intensity_mean') is not None else None
+                props['intensity_std'] = float(stats.get('intensity_std')[r, c]) if stats.get('intensity_std') is not None else None
+            except Exception:
+                # keep best-effort; if indexing fails, skip stats for this feature
+                pass
         if as_polygons:
             # polygon from edges: (x0,y0)->(x1,y0)->(x1,y1)->(x0,y1)->(x0,y0)
             x0 = float(x_edges[c]); x1 = float(x_edges[c+1])
@@ -965,7 +1108,7 @@ def main():
     # --------------------------------
 
     print("Chargement des points...")
-    xs, ys, zs = load_points(csv_path, classification=classification)
+    xs, ys, zs, intensities = load_points(csv_path, classification=classification)
     print(f"Points chargés: {len(xs)} (classification={classification})")
 
     if show_points or save_points_plot:
@@ -973,7 +1116,7 @@ def main():
         plot_points(xs, ys, title=f"Points classification {classification}", save_path=pp_path, show=show_points)
 
     print("Voxelisation 2D...")
-    counts, x_edges, y_edges, x_centers, y_centers = voxelize_2d(xs, ys, voxel_size=voxel_size)
+    counts, x_edges, y_edges, x_centers, y_centers, voxel_stats = voxelize_2d(xs, ys, voxel_size=voxel_size, zs=zs, intensities=intensities, return_stats=True)
     print(f"Voxels: {counts.shape[1]} x {counts.shape[0]} (nx x ny)")
 
     if show_voxels or save_voxels_plot:
@@ -1109,8 +1252,8 @@ def main():
         print("\nExportation des résultats pour QGIS...")
         try:
             # Voxels non-vides: export CSV et GeoJSON
-            export_voxels_to_csv(os.path.join(output_dir, 'voxels_non_vides.csv'), counts, x_centers, y_centers, mask=dbscan_mask, labels=dbscan_labels)
-            export_voxels_to_geojson(os.path.join(output_dir, 'voxels_non_vides.geojson'), counts, x_edges, y_edges, x_centers, y_centers, mask=dbscan_mask, labels=dbscan_labels, as_polygons=False)
+            export_voxels_to_csv(os.path.join(output_dir, 'voxels_non_vides.csv'), counts, x_centers, y_centers, mask=dbscan_mask, labels=dbscan_labels, stats=voxel_stats)
+            export_voxels_to_geojson(os.path.join(output_dir, 'voxels_non_vides.geojson'), counts, x_edges, y_edges, x_centers, y_centers, mask=dbscan_mask, labels=dbscan_labels, as_polygons=False, stats=voxel_stats)
             print("Voxels non-vides exportés (CSV + GeoJSON).")
         except Exception as e:
             print("Erreur lors de l'export des voxels:", e)
@@ -1125,8 +1268,8 @@ def main():
 
         # Optionnel: exporter tous les voxels (y compris vides) pour vérification
         try:
-            all_voxels_counts, _, _, _, _ = voxelize_2d(xs, ys, voxel_size=voxel_size, method="count")
-            export_voxels_to_csv(os.path.join(output_dir, 'voxels_tous.csv'), all_voxels_counts, x_centers, y_centers)
+            all_voxels_counts, _, _, _, _, all_voxel_stats = voxelize_2d(xs, ys, voxel_size=voxel_size, method="count", zs=zs, return_stats=True)
+            export_voxels_to_csv(os.path.join(output_dir, 'voxels_tous.csv'), all_voxels_counts, x_centers, y_centers, stats=all_voxel_stats)
             print("Tous les voxels exportés (CSV).")
         except Exception as e:
             print("Erreur lors de l'export de tous les voxels:", e)
