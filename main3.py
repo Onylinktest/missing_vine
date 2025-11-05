@@ -76,6 +76,93 @@ def load_points(path="data/parcel.csv", classification=4):
 
     return xs, ys, zs, intensities
 
+
+def interpolate_dtm_knn(gx, gy, gz, qx, qy, k=8, power=2, eps=1e-6):
+    """Interpolate a DTM at query points (qx,qy) from ground points (gx,gy,gz).
+
+    Uses inverse-distance weighting from k nearest ground points. If a query
+    point coincides with a ground point (dist==0) returns that ground z.
+    """
+    try:
+        from scipy.spatial import cKDTree
+    except Exception:
+        # fallback: nearest neighbor using naive loop
+        out = np.full(len(qx), np.nan, dtype=float)
+        if len(gx) == 0:
+            return out
+        for i, (xq, yq) in enumerate(zip(qx, qy)):
+            d2 = (gx - xq)**2 + (gy - yq)**2
+            idx = int(np.argmin(d2))
+            out[i] = float(gz[idx])
+        return out
+
+    if len(gx) == 0:
+        return np.full(len(qx), np.nan, dtype=float)
+
+    tree = cKDTree(np.column_stack([gx, gy]))
+    kk = min(k, len(gx))
+    # older scipy versions do not accept n_jobs; call without it for compatibility
+    try:
+        dists, idxs = tree.query(np.column_stack([qx, qy]), k=kk)
+    except TypeError:
+        # fallback: query may still work; re-raise otherwise
+        dists, idxs = tree.query(np.column_stack([qx, qy]), k=kk)
+    # ensure dists, idxs are 2D
+    if kk == 1:
+        dists = dists[:, None]
+        idxs = idxs[:, None]
+
+    out = np.full(len(qx), np.nan, dtype=float)
+    for i in range(len(qx)):
+        d = dists[i]
+        ids = idxs[i]
+        if np.any(d == 0.0):
+            out[i] = float(gz[ids[np.argmin(d)]])
+            continue
+        w = 1.0 / (np.maximum(d, eps) ** power)
+        vals = gz[ids]
+        out[i] = float(np.sum(w * vals) / np.sum(w))
+    return out
+
+
+def normalize_z_using_ground(csv_path, xs, ys, zs, k=8):
+    """Compute Z_normalized = Z - Zsol using ground points (Classification==2).
+
+    Returns an array of normalized z (same length as zs). If no ground points
+    are available, returns the original zs and logs a warning.
+    """
+    # load ground points (classification 2)
+    gx, gy, gz, _ = None, None, None, None
+    try:
+        gx, gy, gz, _ = load_points(csv_path, classification=2)
+    except Exception:
+        pass
+
+    if gx is None or len(gx) == 0:
+        print('Warning: no ground points (Classification==2) found for DTM. Skipping normalization.')
+        return zs
+
+    try:
+        zsol = interpolate_dtm_knn(np.asarray(gx), np.asarray(gy), np.asarray(gz), np.asarray(xs), np.asarray(ys), k=k)
+    except Exception as e:
+        print('Warning: DTM interpolation failed:', e)
+        return zs
+
+    # if any NaN in zsol, replace by nearest neighbor
+    nanmask = np.isnan(zsol)
+    if np.any(nanmask):
+        try:
+            from scipy.spatial import cKDTree
+            tree = cKDTree(np.column_stack([gx, gy]))
+            _, ids = tree.query(np.column_stack([xs[nanmask], ys[nanmask]]), k=1)
+            zsol[nanmask] = np.array(gz)[ids]
+        except Exception:
+            # leave NaNs, will cause normalized z to be NaN for those points
+            pass
+
+    z_norm = np.asarray(zs, dtype=float) - np.asarray(zsol, dtype=float)
+    return z_norm
+
 # -------------------------
 # Affichage points
 # -------------------------
@@ -1110,6 +1197,15 @@ def main():
     print("Chargement des points...")
     xs, ys, zs, intensities = load_points(csv_path, classification=classification)
     print(f"Points chargés: {len(xs)} (classification={classification})")
+
+    # --- normaliser Z par rapport au modèle de terrain (DTM) issu des points Classification==2
+    try:
+        z_norm = normalize_z_using_ground(csv_path, xs, ys, zs, k=8)
+        if z_norm is not None:
+            zs = z_norm
+            print('Z normalisé par rapport au DTM (Classification==2).')
+    except Exception as e:
+        print('Erreur lors de la normalisation Z:', e)
 
     if show_points or save_points_plot:
         pp_path = os.path.join(output_dir, 'points.png') if save_points_plot else None
